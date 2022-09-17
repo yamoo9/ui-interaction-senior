@@ -1,21 +1,7 @@
-// CSS Variable
-:root {
-  --white: #fff;
-}
+@use 'sass:math';
+@use 'euid';
 
-// JavaScript Variable
-// let white = '#fff';
-// namespace 'colors.white'
-// const colors = {
-//   white: '#fff',
-// };
+// at-rule
+// @debug
 
-// Sass Variable
-// PHP Variable
-$white: #fff; // color
-$black: #000; // string
-
-body {
-  background: $white;
-  color: $black;
-}
+@debug euid.rem(180px); // rem

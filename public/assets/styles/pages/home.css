@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+  background: #fff;
+  color: #000;
+}
+
+.home {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  min-height: 100vh;
+}
+.home a[href] {
+  display: inline-block;
+  text-decoration: none;
+  padding-left: 0.3em;
+  padding-right: 0.3em;
+}
+
+/*# sourceMappingURL=home.css.map */

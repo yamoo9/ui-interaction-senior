@@ -6,9 +6,9 @@
   "scripts": {
     "dev": "run-p watch serve",
     "serve": "live-server public --host=localhost --port=3000 --no-browser",
-    "compile": "sass src/sass/main.scss public/assets/styles/main.css",
+    "compile": "sass --update src/sass:public/assets/styles",
     "watch": "npm run compile -- --watch",
-    "build": "sass src/sass/main.scss public/assets/styles/main.min.css --minify"
+    "build": "sass src/sass/main.scss public/assets/styles/main.min.css --style=compressed"
   },
   "devDependencies": {
     "live-server": "1.2.2",

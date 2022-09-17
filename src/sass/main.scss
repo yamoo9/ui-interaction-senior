@@ -1,7 +1,3 @@
-@use 'sass:math';
 @use 'euid';
 
-// at-rule
-// @debug
-
-@debug euid.rem(180px); // rem
+@debug euid.rem(180px);

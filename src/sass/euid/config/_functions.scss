@@ -1,5 +1,5 @@
-@use 'sass:math';
 @use 'sass:map';
+@use 'sass:math';
 @use '../variables' as *;
 
 @function remove-unit($unit) {
@@ -13,6 +13,5 @@
 }
 
 @function get-color($name) {
-  @debug $name;
   @return map.get($colors, $name);
 }

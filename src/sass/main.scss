@@ -1,0 +1,21 @@
+// CSS Variable
+:root {
+  --white: #fff;
+}
+
+// JavaScript Variable
+// let white = '#fff';
+// namespace 'colors.white'
+// const colors = {
+//   white: '#fff',
+// };
+
+// Sass Variable
+// PHP Variable
+$white: #fff; // color
+$black: #000; // string
+
+body {
+  background: $white;
+  color: $black;
+}

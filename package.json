@@ -1,1 +1,18 @@
-{}
+{
+  "private": true,
+  "name": "ui-interaction-senior",
+  "description": "UI 인터랙션 시니어 프로그래밍",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "run-p watch serve",
+    "serve": "live-server public --host=localhost --port=3000 --no-browser",
+    "compile": "sass src/sass/main.scss public/assets/styles/main.css",
+    "watch": "npm run compile -- --watch",
+    "build": "sass src/sass/main.scss public/assets/styles/main.min.css --minify"
+  },
+  "devDependencies": {
+    "live-server": "1.2.2",
+    "npm-run-all": "4.1.5",
+    "sass": "1.54.9"
+  }
+}

@@ -2,60 +2,17 @@
 <html lang="ko-KR">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tailwind CSS 유틸리티 퍼스트 프레임워크</title>
-
-  <style type="text/tailwindcss">
-    @tailwind base;
-    @tailwind components;
-    @tailwind utilities;
-
-    @layer base {
-      abbr[title] {
-        @apply cursor-help no-underline;
-      }
-    }
-
-    @layer components {
-      .Button {
-        @apply py-2 px-4 bg-slate-600 text-slate-100 rounded;
-      }
-    }
-
-  </style>
-
-  <!-- Tailwind CDN -->
-  <script src="//cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            tailwind: {
-              100: "#d7f2fe",
-              200: "#afe5fc",
-              300: "#88d7fb",
-              400: "#60caf9",
-              500: "#38bdf8",
-              600: "#2d97c6",
-              700: "#227195",
-              800: "#164c63",
-              900: "#0b2632"
-            },
-          }
-        }
-      }
-    }
-  </script>
+  <link rel="stylesheet" href="./assets/styles/main.css" />
 </head>
-<body class="flex justify-center items-center h-screen">
+<body class="bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-50 flex justify-center items-center h-screen">
   
   <div class="Game bg-tailwind-200 p-8">
     <h1 class="GameTitle text-3xl font-extrabold"><abbr title="Snake Game">SG</abbr></h1>
-    <div class="ButtonGroup flex items-center gap-2">
+    <div class="ButtonGroup flex items-center gap-4">
       <button type="button" class="Button">start</button>
-      <button type="button" class="Button">stop</button>
+      <button type="button" class="Button Button--negative fixed top-3 right-3 z-40 hover:animate-pulse">stop</button>
     </div>
     <h2 class="GameScore">
       score <span class="GameScoreDisplay">0</span>

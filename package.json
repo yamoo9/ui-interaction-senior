@@ -1,1 +1,13 @@
-{}
+{
+  "scripts": {
+    "dev": "run-p serve watch",
+    "serve": "live-server public",
+    "watch": "tailwindcss --watch -i src/tailwind.css -o public/assets/styles/main.css"
+  },
+  "devDependencies": {
+    "caniuse-lite": "1.0.30001402",
+    "live-server": "1.2.2",
+    "npm-run-all": "4.1.5",
+    "tailwindcss": "3.1.8"
+  }
+}

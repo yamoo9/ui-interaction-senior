@@ -1,3 +1,5 @@
-@use 'euid';
+@use 'sass:meta';
+@use 'euid' as *;
 
-@debug euid.rem(180px);
+// @debug get-color('red');
+@debug get-color(red);

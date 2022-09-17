@@ -1,4 +1,6 @@
 @use 'sass:math';
+@use 'sass:map';
+@use '../variables' as *;
 
 @function remove-unit($unit) {
   @return math.div($unit, $unit * 0 + 1);
@@ -8,4 +10,9 @@
   $value: remove-unit($value);
   $base: remove-unit($base);
   @return math.div($value, $base) * 1rem;
+}
+
+@function get-color($name) {
+  @debug $name;
+  @return map.get($colors, $name);
 }

@@ -1,9 +1,9 @@
 import {
   on,
+  each,
+  getNode as $,
   documentTitle,
   getRandomMinMax,
-  getNode as $,
-  each,
 } from './lib/index.js';
 
 // 애플리케이션 설정
@@ -29,28 +29,4 @@ init();
 
 // 문서 요소 참조
 const startButton = $('.Button');
-
-// on(node, type, handler);
-// on(node, eventObject);
-
-on(startButton, {
-  click: init,
-  dblclick: () => {
-    console.log('더블 클릭!!');
-  },
-});
-
-// each([11, 22, 33], (n) => {
-//   console.log(n);
-// });
-
-// each(
-//   {
-//     name: '박한별',
-//     age: 32,
-//     job: '회계사',
-//   },
-//   ([key, value]) => {
-//     console.log({ key, value });
-//   }
-// );
+on(startButton, 'click', init);

@@ -12,3 +12,5 @@ export const isSymbol = (data) => typeOf(data) === 'symbol';
 export const isFunction = (data) => typeOf(data) === 'function';
 export const isArray = (data) => typeOf(data) === 'array';
 export const isObject = (data) => typeOf(data) === 'object';
+export const isRegExp = (data) => typeOf(data) === 'regexp';
+export const isDate = (data) => typeOf(data) === 'date';

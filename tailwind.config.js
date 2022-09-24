@@ -2,7 +2,14 @@
 module.exports = {
   content: ['public/**/*.html'],
   theme: {
-    extend: {},
+    extend: {
+      fontSize: {
+        '10xl': '224px',
+      },
+      animation: {
+        'pulse-fast': 'pulse 0.2s linear infinite',
+      },
+    },
   },
   plugins: [],
 };

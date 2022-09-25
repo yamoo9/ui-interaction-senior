@@ -1,6 +1,5 @@
 import {
   on,
-  each,
   getNode as $,
   documentTitle,
   getRandomMinMax,
@@ -13,20 +12,22 @@ const APP_CONFIG = {
 };
 
 // 애플리케이션 랜딩 초기화
-function init() {
+function randomCountUp() {
+  // 설정 추출
   const { min, max } = APP_CONFIG;
 
-  // 카운트 목표 값이 설정
+  // 카운트 목표 값 설정
   const TARGET_COUNT = getRandomMinMax(min, max);
 
-  // 문서 제목이 카운트 목표 값 설정
-  documentTitle((initialDocTitle) => {
-    return `(${TARGET_COUNT}) ${initialDocTitle}`;
-  });
+  // 문서 제목 카운트 목표 값 설정
+  documentTitle((initialDocTitle) => `(${TARGET_COUNT}) ${initialDocTitle}`);
 }
 
-init();
+// 애플리케이션 최초 구동
+randomCountUp();
 
 // 문서 요소 참조
 const startButton = $('.Button');
-on(startButton, 'click', init);
+
+// 이벤트 핸들링
+on(startButton, 'click', randomCountUp);

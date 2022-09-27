@@ -20,6 +20,7 @@ const APP_CONFIG = {
   step: 1,
   current: 0,
   fps: 60,
+  stopRandomCountUp: null,
 };
 
 // 카운트 목표 값 설정
@@ -58,21 +59,28 @@ function animate(initialCount, targetCount) {
 
     const FPS = memo(() => APP_CONFIG.fps, 'fps');
     stopAnimateId = delay(animateCount.bind(this, render), 1000 / FPS);
+    // 클린업(정리) 함수 외부에 내보내기
+    return () => clearTimeout(stopAnimateId);
   };
 }
 
 // 애플리케이션 랜딩 초기화
 function randomCountUp() {
   reset();
-
   const TARGET_COUNT = getTargetCount();
   updateDocumentTitle(TARGET_COUNT);
 
   const animateCount = animate(APP_CONFIG.current, TARGET_COUNT);
-  animateCount(renderCount);
+  APP_CONFIG.stopRandomCountUp = animateCount(renderCount);
 }
 
 function reset() {
+  // if (typeof stopRandomCountup === 'function') {
+  //   stopRandomCountUp();
+  // }
+
+  APP_CONFIG.stopRandomCountUp?.();
+
   const count = memo(() => $('.Count'), 'Count');
   removeClass(count, 'animate-none');
 }

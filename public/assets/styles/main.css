@@ -651,3 +651,9 @@ video {
   -webkit-animation: none;
           animation: none;
 }
+
+.active {
+  font-weight: 800;
+  --tw-text-opacity: 1;
+  color: rgb(8 145 178 / var(--tw-text-opacity));
+}

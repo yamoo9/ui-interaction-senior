@@ -11,6 +11,6 @@ export function delay(...args) {
   }
   if (isFunction(firstArg)) {
     const [timeout] = restArgs; /* [number, ...] */
-    setTimeout(firstArg /* callback */, timeout ?? 1000);
+    return setTimeout(firstArg /* callback */, timeout ?? 1000);
   }
 }

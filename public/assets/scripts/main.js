@@ -6,7 +6,12 @@ import {
   text,
   memo,
   delay,
+  addClass,
+  removeClass,
+  radioClass,
 } from './lib/index.js';
+
+globalThis.radioClass = radioClass;
 
 // 애플리케이션 설정
 const APP_CONFIG = {
@@ -14,7 +19,7 @@ const APP_CONFIG = {
   max: 80,
   step: 1,
   current: 0,
-  fps: 30,
+  fps: 60,
 };
 
 // 카운트 목표 값 설정
@@ -32,8 +37,7 @@ function updateDocumentTitle(targetCount) {
 function renderCount(currentCount, isStop) {
   const count = memo(() => $('.Count'), 'Count');
   text(count, currentCount);
-  isStop && count.classList.add('animate-none');
-  // addCalss(count, 'animate-none');
+  isStop && addClass(count, 'animate-none');
 }
 
 // 애니메이션
@@ -59,11 +63,18 @@ function animate(initialCount, targetCount) {
 
 // 애플리케이션 랜딩 초기화
 function randomCountUp() {
+  reset();
+
   const TARGET_COUNT = getTargetCount();
   updateDocumentTitle(TARGET_COUNT);
 
   const animateCount = animate(APP_CONFIG.current, TARGET_COUNT);
   animateCount(renderCount);
+}
+
+function reset() {
+  const count = memo(() => $('.Count'), 'Count');
+  removeClass(count, 'animate-none');
 }
 
 // 문서 요소 참조

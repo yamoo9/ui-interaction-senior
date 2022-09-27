@@ -8,10 +8,10 @@ import {
   delay,
   addClass,
   removeClass,
-  radioClass,
+  attr,
 } from './lib/index.js';
 
-globalThis.radioClass = radioClass;
+globalThis.attr = attr;
 
 // 애플리케이션 설정
 const APP_CONFIG = {

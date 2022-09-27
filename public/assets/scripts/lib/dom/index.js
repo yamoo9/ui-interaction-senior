@@ -4,3 +4,4 @@ export * from './classes.js';
 export * from './getNode.js';
 export * from './content.js';
 export * from './events.js';
+export * from './attr.js';

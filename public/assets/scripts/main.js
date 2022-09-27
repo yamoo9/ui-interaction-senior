@@ -5,6 +5,7 @@ import {
   getRandomMinMax,
   text,
   memo,
+  delay,
 } from './lib/index.js';
 
 // 애플리케이션 설정
@@ -12,7 +13,8 @@ const APP_CONFIG = {
   min: 40,
   max: 80,
   step: 1,
-  current: 12,
+  current: 0,
+  fps: 30,
 };
 
 // 카운트 목표 값 설정
@@ -27,18 +29,41 @@ function updateDocumentTitle(targetCount) {
 }
 
 // UI의 카운트 값 업데이트
-function renderCount(currentCount) {
+function renderCount(currentCount, isStop) {
   const count = memo(() => $('.Count'), 'Count');
   text(count, currentCount);
+  isStop && count.classList.add('animate-none');
+  // addCalss(count, 'animate-none');
+}
+
+// 애니메이션
+function animate(initialCount, targetCount) {
+  let stopAnimateId;
+  let count = initialCount;
+  return function animateCount(render) {
+    count += 1;
+    let isStopAnimate = count >= targetCount;
+
+    // 증가하는 카운트 값 목표 값 비교
+    render(count, isStopAnimate);
+
+    // 카운트 업이 정지되는 조건
+    if (isStopAnimate) {
+      return clearTimeout(stopAnimateId);
+    }
+
+    const FPS = memo(() => APP_CONFIG.fps, 'fps');
+    stopAnimateId = delay(animateCount.bind(this, render), 1000 / FPS);
+  };
 }
 
 // 애플리케이션 랜딩 초기화
 function randomCountUp() {
-  const targetCount = getTargetCount();
-  updateDocumentTitle(targetCount);
+  const TARGET_COUNT = getTargetCount();
+  updateDocumentTitle(TARGET_COUNT);
 
-  let { current: count } = APP_CONFIG;
-  renderCount(count);
+  const animateCount = animate(APP_CONFIG.current, TARGET_COUNT);
+  animateCount(renderCount);
 }
 
 // 문서 요소 참조

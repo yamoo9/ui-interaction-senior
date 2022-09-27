@@ -642,3 +642,12 @@ video {
 .Button svg {
   pointer-events: none;
 }
+
+.hidden {
+  display: none;
+}
+
+.animate-none {
+  -webkit-animation: none;
+          animation: none;
+}

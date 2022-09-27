@@ -17,8 +17,9 @@ UI 프로그래밍
 
 **라이브러리 (DOM, Utils) 구현**
 
-- [ ] utils/loop
-- [ ] utils/delay
+- [x] utils/loop
+- [x] utils/delay
+- [x] utils/memo
 - [ ] utils/debounce
 - [ ] utils/throttle
 
@@ -30,10 +31,11 @@ UI 프로그래밍
   - [ ] removeClass
   - [ ] toggleClass
   - [ ] radioClass
-- [ ] dom/content
-  - [ ] html
-  - [ ] text
+- [x] dom/content
+  - [x] html
+  - [x] text
 - [ ] dom/insert
+
   - [ ] prepend
   - [ ] append
   - [ ] first

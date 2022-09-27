@@ -1,3 +1,4 @@
+export * from './memo.js';
 export * from './each.js';
 export * from './loop.js';
 export * from './delay.js';

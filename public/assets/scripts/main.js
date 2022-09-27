@@ -1,17 +1,15 @@
 import {
   on,
-  getNode as $,
-  documentTitle,
-  getRandomMinMax,
+  attr,
   text,
   memo,
   delay,
   addClass,
   removeClass,
-  attr,
+  getNode as $,
+  documentTitle,
+  getRandomMinMax,
 } from './lib/index.js';
-
-globalThis.attr = attr;
 
 // 애플리케이션 설정
 const APP_CONFIG = {
@@ -36,7 +34,7 @@ function updateDocumentTitle(targetCount) {
 
 // UI의 카운트 값 업데이트
 function renderCount(currentCount, isStop) {
-  const count = memo(() => $('.Count'), 'Count');
+  const count = memo('Count');
   text(count, currentCount);
   isStop && addClass(count, 'animate-none');
 }
@@ -45,6 +43,8 @@ function renderCount(currentCount, isStop) {
 function animate(initialCount, targetCount) {
   let stopAnimateId;
   let count = initialCount;
+  const FPS = APP_CONFIG.fps;
+
   return function animateCount(render) {
     count += 1;
     let isStopAnimate = count >= targetCount;
@@ -57,7 +57,6 @@ function animate(initialCount, targetCount) {
       return clearTimeout(stopAnimateId);
     }
 
-    const FPS = memo(() => APP_CONFIG.fps, 'fps');
     stopAnimateId = delay(animateCount.bind(this, render), 1000 / FPS);
     // 클린업(정리) 함수 외부에 내보내기
     return () => clearTimeout(stopAnimateId);
@@ -81,7 +80,7 @@ function reset() {
 
   APP_CONFIG.stopRandomCountUp?.();
 
-  const count = memo(() => $('.Count'), 'Count');
+  const count = memo('Count', () => $('.Count'));
   removeClass(count, 'animate-none');
 }
 

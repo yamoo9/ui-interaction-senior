@@ -23,24 +23,23 @@ UI 프로그래밍
 - [ ] utils/debounce
 - [ ] utils/throttle
 
-- [ ] dom/attr
-- [ ] dom/create
-- [ ] dom/classes
-  - [ ] hasClass
-  - [ ] addClass
-  - [ ] removeClass
-  - [ ] toggleClass
-  - [ ] radioClass
+- [x] dom/attr
+- [x] dom/create
+- [x] dom/classes
+  - [x] hasClass
+  - [x] addClass
+  - [x] removeClass
+  - [x] toggleClass
+  - [x] radioClass
 - [x] dom/content
   - [x] html
   - [x] text
 - [ ] dom/insert
-
-  - [ ] prepend
-  - [ ] append
   - [ ] first
   - [ ] last
   - [ ] before
   - [ ] after
+  - [ ] prepend
+  - [ ] append
 
 - [ ] audio/player

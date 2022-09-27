@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev": "run-p serve watch",
-    "serve": "live-server public",
+    "serve": "live-server public --host=localhost --port=3000 --no-browser",
     "watch": "tailwindcss --watch -i src/tailwind.css -o public/assets/styles/main.css"
   },
   "devDependencies": {

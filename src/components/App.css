@@ -1,0 +1,4 @@
+
+.App {
+  @apply h-screen flex flex-wrap flex-col justify-center items-center;
+}

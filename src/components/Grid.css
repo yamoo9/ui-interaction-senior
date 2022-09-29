@@ -1,0 +1,5 @@
+.Grid {
+  @apply box-content flex flex-wrap content-start border-4 border-slate-700;
+  width: 200px;
+  height: 200px;
+}

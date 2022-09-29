@@ -1,0 +1,42 @@
+.Button {
+  @apply select-none;
+  @apply px-6 py-2 border-current border-4 rounded outline-none;
+  @apply bg-transparent text-slate-900 font-bold uppercase;
+  @apply transition duration-[400];
+  @apply focus:ring-2 focus:ring-offset-2;
+
+  &Group {
+    @apply flex gap-x-2 mt-4;
+  }
+
+  &--start {
+    @apply text-cyan-600 focus:ring-cyan-600;
+    &:hover:not(:disabled) {
+      @apply bg-cyan-100;
+    }
+  }
+
+  &--stop {
+    @apply text-red-600 focus:ring-red-600;
+    &:hover:not(:disabled) {
+      @apply bg-red-100;
+    }
+  }
+
+  &:focus:not(:focus-visible) {
+    @apply ring-transparent;
+  }
+
+  &:active:not(:disabled) {
+    @apply scale-95;
+  }
+
+  &:disabled {
+    @apply cursor-not-allowed;
+    @apply bg-slate-400 text-slate-500;
+  }
+
+  & span {
+    @apply pointer-events-none;
+  }
+}

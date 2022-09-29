@@ -1,0 +1,12 @@
+.Snake {
+  @apply w-5 h-5 bg-sky-400;
+
+  &--head {
+    @apply relative;
+    &::before {
+      content: '';
+      @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+      @apply w-1 h-1 rounded-full bg-white leading-none;
+    }
+  }
+}

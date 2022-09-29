@@ -1,0 +1,3 @@
+.Title {
+  @apply text-5xl text-slate-800 font-extrabold uppercase;
+}

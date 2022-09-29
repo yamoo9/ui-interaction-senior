@@ -9,6 +9,7 @@ import {
   getNode as $,
   documentTitle,
   getRandomMinMax,
+  AudioPlayer,
 } from './lib/index.js';
 
 // 애플리케이션 설정
@@ -20,6 +21,10 @@ const APP_CONFIG = {
   fps: 60,
   stopRandomCountUp: null,
 };
+
+// 오디오 객체 생성
+const shuffleSound = new AudioPlayer('/assets/media/shuffle.mp3');
+const ticSound = new AudioPlayer('/assets/media/tic.mp3');
 
 // 카운트 목표 값 설정
 function getTargetCount() {
@@ -54,7 +59,9 @@ function animate(initialCount, targetCount) {
 
     // 카운트 업이 정지되는 조건
     if (isStopAnimate) {
-      return clearTimeout(stopAnimateId);
+      shuffleSound.stop();
+      clearTimeout(stopAnimateId);
+      return;
     }
 
     stopAnimateId = delay(animateCount.bind(this, render), 1000 / FPS);
@@ -69,17 +76,14 @@ function randomCountUp() {
   const TARGET_COUNT = getTargetCount();
   updateDocumentTitle(TARGET_COUNT);
 
+  shuffleSound.loopPlay();
+
   const animateCount = animate(APP_CONFIG.current, TARGET_COUNT);
   APP_CONFIG.stopRandomCountUp = animateCount(renderCount);
 }
 
 function reset() {
-  // if (typeof stopRandomCountup === 'function') {
-  //   stopRandomCountUp();
-  // }
-
   APP_CONFIG.stopRandomCountUp?.();
-
   const count = memo('Count', () => $('.Count'));
   removeClass(count, 'animate-none');
 }
@@ -92,3 +96,4 @@ randomCountUp();
 
 // 이벤트 핸들링
 on(startButton, 'click', randomCountUp);
+on(startButton, 'mouseenter', ticSound.play.bind(ticSound));

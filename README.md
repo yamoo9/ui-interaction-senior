@@ -20,8 +20,8 @@ UI 프로그래밍
 - [x] utils/loop
 - [x] utils/delay
 - [x] utils/memo
-- [ ] utils/debounce
-- [ ] utils/throttle
+- [x] utils/debounce
+- [x] utils/throttle
 - [x] dom/attr
 - [x] dom/create
 - [x] dom/classes
@@ -33,9 +33,9 @@ UI 프로그래밍
 - [x] dom/content
   - [x] html
   - [x] text
-- [ ] dom/insert
-  - [ ] first / prepend
-  - [ ] last / append
-  - [ ] before
-  - [ ] after
-- [ ] audio/player
+- [x] dom/insert
+  - [x] first / prepend
+  - [x] last / append
+  - [x] before
+  - [x] after
+- [x] audio/player

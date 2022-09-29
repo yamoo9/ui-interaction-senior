@@ -22,7 +22,6 @@ UI 프로그래밍
 - [x] utils/memo
 - [ ] utils/debounce
 - [ ] utils/throttle
-
 - [x] dom/attr
 - [x] dom/create
 - [x] dom/classes
@@ -35,11 +34,8 @@ UI 프로그래밍
   - [x] html
   - [x] text
 - [ ] dom/insert
-  - [ ] first
-  - [ ] last
+  - [ ] first / prepend
+  - [ ] last / append
   - [ ] before
   - [ ] after
-  - [ ] prepend
-  - [ ] append
-
 - [ ] audio/player

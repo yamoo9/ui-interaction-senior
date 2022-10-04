@@ -42,10 +42,10 @@ const scoreDisplayElement = $(`.Score__Display`);
 /* -------------------------------------------------------------------------- */
 
 let squares = [];
-let snake = [2, 1, 0];
+let snake = [];
 let speed = 1000;
 let score = 0;
-let isStaring = false;
+let isStarting = false;
 let direction = 1;
 let gameStopId;
 let appleIndex;
@@ -167,9 +167,58 @@ function isGameOver() {
 function gameOver() {
   alert('GAME OVER');
   gameStop();
+  // 게임 스타트 버튼 활성화
+  startButtonElement.disabled = false;
+  // 게임 스타트 버튼 콘텐츠 "start"로 변경
+  text(startButtonElement, 'start');
+  // 게임 스톱 버튼 비활성화
+  stopButtonElement.disabled = true;
+  // 게임 상태 초기화
+  resetGameState();
+}
+
+function getRandomSnakeArray() {
+  let headIndex;
+  let restIndex;
+
+  do {
+    headIndex = getRandom(SQUARE_TOTAL - 1);
+    restIndex = headIndex % SQUARE_ROWS;
+  } while (restIndex < SQUARE_ROWS - 7 || restIndex > SQUARE_ROWS - 3);
+
+  let bodyIndex = headIndex - 1;
+  let tailIndex = headIndex - 2;
+
+  return [headIndex, bodyIndex, tailIndex];
+}
+
+function resetSquares() {
+  each(squares, (square) =>
+    removeClass(square, GAME_ELEMENTS.apple, GAME_ELEMENTS.snake)
+  );
+}
+
+function resetScore() {
+  score = 0;
+  text(scoreDisplayElement, score);
+}
+
+function resetGameState() {
+  speed = 1000;
+  isStarting = false;
+  direction = 1;
+}
+
+function resetGame() {
+  resetSquares();
+  resetScore();
+  snake = getRandomSnakeArray();
+  drawSnake();
+  drawApple();
 }
 
 function gameStart() {
+  resetGame();
   gameRestart();
 }
 
@@ -182,9 +231,7 @@ function gameStop() {
 }
 
 function init() {
-  drawSquares();
-  drawSnake();
-  drawApple();
+  drawSquares({ showGridNumbers: true });
 }
 
 init();
@@ -194,10 +241,10 @@ init();
 /* -------------------------------------------------------------------------- */
 
 function handleGameStart() {
-  if (!isStaring) {
+  if (!isStarting) {
     console.log('game start');
-    isStaring = true;
     gameStart();
+    isStarting = true;
     text(startButtonElement, 'restart');
   } else {
     console.log('game restart');

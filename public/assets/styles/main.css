@@ -664,15 +664,15 @@ video {
 }
 
 .Score {
-  font-weight: 800;
-}
-
-.ScoreDisplay {
   margin-top: 1rem;
   margin-bottom: 1rem;
   font-size: 1.25rem;
   line-height: 1.75rem;
   text-transform: uppercase;
+}
+
+.Score__Display {
+  font-weight: 800;
 }
 
 .Square {
@@ -728,9 +728,4 @@ video {
 
 .hidden {
   display: none;
-}
-
-.bg-slate-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
 }

@@ -39,7 +39,7 @@ export function fetchData({
     }
   });
 
-  xhr.send(body);
+  xhr.send(body ?? JSON.stringify(body));
 }
 
 fetchData.get = (url, onSuccess, onFail) => {

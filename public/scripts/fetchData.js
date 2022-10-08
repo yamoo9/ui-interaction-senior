@@ -1,3 +1,17 @@
+// JavaScript 데이터 타입 8가지
+
+// null
+// undefined
+// number
+// bigint
+// string
+// boolean
+// symbol
+// object types
+// array
+// function
+// object
+
 export function fetchData({
   url = null,
   method = 'GET',
@@ -27,3 +41,40 @@ export function fetchData({
 
   xhr.send(body);
 }
+
+fetchData.get = (url, onSuccess, onFail) => {
+  fetchData({
+    url,
+    onSuccess,
+    onFail,
+  });
+};
+
+fetchData.post = (url, body, onSuccess, onFail) => {
+  fetchData({
+    method: 'POST',
+    url,
+    body,
+    onSuccess,
+    onFail,
+  });
+};
+
+fetchData.put = (url, body, onSuccess, onFail) => {
+  fetchData({
+    method: 'PUT',
+    url,
+    body,
+    onSuccess,
+    onFail,
+  });
+};
+
+fetchData.delete = (url, onSuccess, onFail) => {
+  fetchData({
+    method: 'DELETE',
+    url,
+    onSuccess,
+    onFail,
+  });
+};

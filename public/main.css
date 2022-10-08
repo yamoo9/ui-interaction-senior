@@ -29,10 +29,22 @@ caption.a11y-hidden {
   visibility: initial;
 }
 
+.spinner {
+  margin: 0;
+  position: absolute;
+  z-index: 100;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  color: #e17c2b;
+}
+
 .user-card-list {
+  position: relative;
   display: flex;
   flex-flow: column;
   gap: 20px;
+  min-height: 300px;
 }
 
 .user-card {

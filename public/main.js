@@ -48,12 +48,27 @@ const handleRequestAlbums = () => {
   fetchData.post(
     'https://jsonplaceholder.typicode.com/users',
     newPostData,
-    (...args) => console.log(args),
+    (data) => console.log(data),
     (error) => console.error(error.message)
   );
 
-  // fetchData.put(...);
-  // fetchData.delete(...);
+  const editPostData = {
+    name: '에브린 하월드',
+    username: '안토니',
+  };
+
+  fetchData.put(
+    'https://jsonplaceholder.typicode.com/users/2',
+    editPostData,
+    (data) => console.log(data),
+    (error) => console.error(error.message)
+  );
+
+  fetchData.delete(
+    'https://jsonplaceholder.typicode.com/users/1',
+    (data) => console.log(data),
+    (error) => console.error(error.message)
+  );
 };
 
 callButton.addEventListener('click', handleRequestAlbums);

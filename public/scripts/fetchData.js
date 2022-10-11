@@ -14,11 +14,11 @@ export function fetchData({
 
   const xhr = new XMLHttpRequest();
 
-  Object.entries(headers).forEach(([key, value]) => {
-    xhr.setRequestHeader(key, value);
-  });
-
   xhr.open(method, url);
+
+  // Object.entries(headers).forEach(([key, value]) => {
+  //   xhr.setRequestHeader(key, value);
+  // });
 
   xhr.addEventListener('readystatechange', () => {
     const { status, readyState, response, error } = xhr;
@@ -87,6 +87,7 @@ const defaultOptions = {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
     // ...
   },
   body: null, // JSON.stringify() 메서드로 문자 값을 전달
@@ -110,13 +111,13 @@ export const fetchPromise = (userOptions = {}) => {
   // create
   const xhr = new XMLHttpRequest();
 
-  // set headers
-  Object.entries(headers).forEach(([key, value]) => {
-    xhr.setRequestHeader(key, value);
-  });
-
   // open
   xhr.open(method, url);
+
+  // set headers
+  // Object.entries(headers).forEach(([key, value]) => {
+  //   xhr.setRequestHeader(key, value);
+  // });
 
   // send
   xhr.send(body ? JSON.stringify(body) : null);

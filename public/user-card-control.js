@@ -1,4 +1,3 @@
-import { fetchPromise } from './scripts/fetchData.js';
 import { delay } from './scripts/delay.js';
 import {
   renderUserList,
@@ -34,18 +33,18 @@ function rendingUserListPage() {
 
   // AFTER 1.
   // PROMISE API
-  fetchPromise
-    .get(ENDPOINT)
-    .then((data) => {
-      delay(1000).then(() => {
-        removeSpinner(userCardList);
-        renderUserList(data, userCardList);
-      });
-    })
-    .catch((error) => {
-      removeSpinner(userCardList);
-      console.error(error.message);
-    });
+  // fetchPromise
+  //   .get(ENDPOINT)
+  //   .then((data) => {
+  //     delay(1000).then(() => {
+  //       removeSpinner(userCardList);
+  //       renderUserList(data, userCardList);
+  //     });
+  //   })
+  //   .catch((error) => {
+  //     removeSpinner(userCardList);
+  //     console.error(error.message);
+  //   });
   // .finally(() => {
   //   removeSpinner(userCardList);
   // });
@@ -54,10 +53,26 @@ function rendingUserListPage() {
   // PROMISE COMBINATION
   // fetchPromise
   //   .get(ENDPOINT)
-  //   .then((data) => delay(1000, data))
+  //   .then((data) => delay(500, { data }))
+  //   .then((data) => delay(1500, { data }))
+  //   .then((data) => delay(500, { data }))
   //   .then((data) => renderUserList(data, userCardList))
   //   .catch((error) => console.error(error))
   //   .finally(() => removeSpinner(userCardList));
+
+  // NATIVE
+  // FETCH API
+  fetch(ENDPOINT)
+    .then((response) => response.json())
+    .then((json) => delay(2000, { data: json }))
+    .then((data) => {
+      removeSpinner(userCardList);
+      renderUserList(data, userCardList);
+    })
+    .catch((error) => {
+      removeSpinner(userCardList);
+      console.error(error.message);
+    });
 }
 
 rendingUserListPage();

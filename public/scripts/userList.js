@@ -43,6 +43,16 @@ const createEmptyCard = () => {
   `;
 };
 
+const createErrorCard = (
+  errorMessage = '🚨 알 수 없는 오류가 발생했습니다.'
+) => {
+  return /* html */ `
+    <article class="user-card user-card-error">
+      ${errorMessage}
+    </article>
+  `;
+};
+
 const createUserCard = ({
   id = '',
   name = '',
@@ -77,13 +87,29 @@ export const removeSpinner = (target = null, spinnerSelector = '.spinner') => {
   target.querySelector(spinnerSelector).remove();
 };
 
-export const renderUserList = (userList = [], targetElement = null) => {
+const displayErrorCard = (errorMessage) => {
+  return renderUserCard(
+    createErrorCard.bind(this, errorMessage),
+    null,
+    targetElement
+  );
+};
+
+export const renderUserList = (
+  userList = [],
+  targetElement = null,
+  error = null
+) => {
   if (!targetElement || targetElement.nodeType !== document.ELEMENT_NODE) {
-    return console.error('targetEelement는 요소노드가 아닙니다.');
+    return displayErrorCard('targetEelement는 요소노드가 아닙니다.');
+  }
+
+  if (error) {
+    return displayErrorCard(error.message);
   }
 
   if (!Array.isArray(userList)) {
-    return console.error('userList 인자는 배열 타입이어야 합니다.');
+    return displayErrorCard('userList 인자는 배열 타입이어야 합니다.');
   }
 
   if (userList.length === 0) {

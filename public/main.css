@@ -78,6 +78,11 @@ caption.a11y-hidden {
   font-weight: 900;
 }
 
+.user-card-error {
+  --card-primary: #c3929e;
+  font-weight: 900;
+}
+
 .user-name {
   margin: 0;
   text-transform: uppercase;

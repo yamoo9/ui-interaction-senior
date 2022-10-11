@@ -37,15 +37,18 @@ function rendingUserListPage() {
   fetchPromise
     .get(ENDPOINT)
     .then((data) => {
-      data = JSON.parse(data);
-      delay(1000).then(() => renderUserList(data, userCardList));
+      delay(1000).then(() => {
+        removeSpinner(userCardList);
+        renderUserList(data, userCardList);
+      });
     })
     .catch((error) => {
-      console.error(error.message);
-    })
-    .finally(() => {
       removeSpinner(userCardList);
+      console.error(error.message);
     });
+  // .finally(() => {
+  //   removeSpinner(userCardList);
+  // });
 
   // AFTER 1.1
   // PROMISE COMBINATION

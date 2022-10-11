@@ -1,6 +1,9 @@
 export function fetchData({
   url = '',
   method = 'GET',
+  headers = {
+    'Content-Type': 'application/json',
+  },
   body = null,
   onSuccess = null,
   onFail = null,
@@ -10,6 +13,10 @@ export function fetchData({
   }
 
   const xhr = new XMLHttpRequest();
+
+  Object.entries(headers).forEach(([key, value]) => {
+    xhr.setRequestHeader(key, value);
+  });
 
   xhr.open(method, url);
 
@@ -103,6 +110,11 @@ export const fetchPromise = (userOptions = {}) => {
   // create
   const xhr = new XMLHttpRequest();
 
+  // set headers
+  Object.entries(headers).forEach(([key, value]) => {
+    xhr.setRequestHeader(key, value);
+  });
+
   // open
   xhr.open(method, url);
 
@@ -114,11 +126,9 @@ export const fetchPromise = (userOptions = {}) => {
     // listen
     xhr.addEventListener('readystatechange', (e) => {
       const { status, readyState, response, error } = xhr;
-      // xhr.status >= 200 || xhr.status < 400
       if (status >= 200 || status < 400) {
-        // xhr.readyState === 4
         if (readyState === 4) {
-          resolve(response);
+          resolve(JSON.parse(response));
         }
       } else {
         reject(error);

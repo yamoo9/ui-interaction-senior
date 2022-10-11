@@ -64,7 +64,7 @@ function rendingUserListPage() {
   // FETCH API
   fetch(ENDPOINT)
     .then((response) => response.json())
-    .then((json) => delay(2000, { data: json }))
+    .then((json) => delay({ timeout: 2000, data: json }))
     .then((data) => {
       removeSpinner(userCardList);
       renderUserList(data, userCardList);

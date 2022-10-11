@@ -1,17 +1,3 @@
-// JavaScript 데이터 타입 8가지
-
-// null
-// undefined
-// number
-// bigint
-// string
-// boolean
-// symbol
-// object types
-// array
-// function
-// object
-
 export function fetchData({
   url = null,
   method = 'GET',

@@ -1,5 +1,5 @@
 body {
-  margin: 4rem;
+  margin: 4rem 0;
   background: #f3f3fc;
 }
 
@@ -45,6 +45,9 @@ caption.a11y-hidden {
   flex-flow: column;
   gap: 20px;
   min-height: 300px;
+  width: clamp(320px, 90vw, 1024px);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .user-card {

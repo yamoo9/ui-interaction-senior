@@ -7,8 +7,22 @@ body {
   display: flex;
   flex-flow: row wrap;
   column-gap: 8px;
-  width: clamp(320px, 90vw, 960px);
-  margin: 12px auto;
+  width: clamp(320px, 90vw, 1024px);
+  margin: 24px auto;
+}
+
+.buttonGroup button {
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  padding: 0.8em 1.2em;
+  background: #706efd;
+  color: #fff;
+  font-weight: 900;
+}
+
+.buttonGroup button:hover {
+  background: #4240b6;
 }
 
 .a11y-hidden {

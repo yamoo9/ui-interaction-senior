@@ -6,7 +6,7 @@ import {
   removeSpinner,
 } from './scripts/userList.js';
 
-const ENDPOINT = '//jsonplaceholder.typicode.com/users';
+const ENDPOINT = 'https://jsonplaceholder.typicode.com/users';
 const userCardList = document.querySelector('.user-card-list');
 
 async function rendingUserListPage() {
@@ -14,6 +14,7 @@ async function rendingUserListPage() {
 
   try {
     const data = await y9.get(ENDPOINT);
+    await delay(800);
     renderUserList(data, userCardList);
   } catch (error) {
     renderUserList(data, userCardList, error);

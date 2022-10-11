@@ -1,4 +1,4 @@
-import { fetchData } from './scripts/fetchData.js';
+import { fetchPromise } from './scripts/fetchData.js';
 import { delay } from './scripts/delay.js';
 import {
   renderUserList,
@@ -6,11 +6,11 @@ import {
   removeSpinner,
 } from './scripts/userList.js';
 
-const ENDPOINT = 'https://jsonplaceholder.typicode.com/users';
-const userCardListElement = document.querySelector('.user-card-list');
+const ENDPOINT = '//jsonplaceholder.typicode.com/users';
+const userCardList = document.querySelector('.user-card-list');
 
 function rendingUserListPage() {
-  renderSpinner(userCardListElement);
+  renderSpinner(userCardList);
 
   // TODO
   // [x] delay 유티릴티 함수 작성
@@ -18,37 +18,43 @@ function rendingUserListPage() {
 
   // BEFORE
   // CALLBACK API
-  fetchData.get(
-    ENDPOINT,
-    (data) => {
-      delay(1000).then(() => {
-        removeSpinner(userCardListElement);
-        renderUserList(data, userCardListElement);
-      });
-      // setTimeout(() => {
-      //   removeSpinner(userCardListElement);
-      //   renderUserList(data, userCardListElement);
-      // }, 1000);
-    },
-    (error) => {
-      removeSpinner(userCardListElement);
-      console.error(error);
-    }
-  );
-
-  // AFTER
-  // PROMISE API
-  // fetchData
-  //   .get(ENDPOINT)
-  //   .then((data) => {
-  //     delay(1000).then(renderUserList(data, userCardListElement));
-  //   })
-  //   .catch((error) => {
+  // fetchData.get(
+  //   ENDPOINT,
+  //   (data) => {
+  //     delay(1000).then(() => {
+  //       removeSpinner(userCardList);
+  //       renderUserList(data, userCardList);
+  //     });
+  //   },
+  //   (error) => {
+  //     removeSpinner(userCardList);
   //     console.error(error);
-  //   })
-  //   .finally(() => {
-  //     removeSpinner(userCardListElement);
-  //   });
+  //   }
+  // );
+
+  // AFTER 1.
+  // PROMISE API
+  fetchPromise
+    .get(ENDPOINT)
+    .then((data) => {
+      data = JSON.parse(data);
+      delay(1000).then(() => renderUserList(data, userCardList));
+    })
+    .catch((error) => {
+      console.error(error.message);
+    })
+    .finally(() => {
+      removeSpinner(userCardList);
+    });
+
+  // AFTER 1.1
+  // PROMISE COMBINATION
+  // fetchPromise
+  //   .get(ENDPOINT)
+  //   .then((data) => delay(1000, data))
+  //   .then((data) => renderUserList(data, userCardList))
+  //   .catch((error) => console.error(error))
+  //   .finally(() => removeSpinner(userCardList));
 }
 
 rendingUserListPage();

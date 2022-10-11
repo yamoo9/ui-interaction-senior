@@ -8,22 +8,15 @@
 /* -------------------------------------------------------------------------- */
 
 // PROMISE API
-// delay(timeout).then(callback);
+// delay(timeout[, options]).then(callback);
+// options = { data?: null, shouldReject?: false, errorMessage?: '...' }
 
 export function delay(timeout = 1000, shouldReject = false) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      // ternary operator
       !shouldReject
         ? resolve()
         : reject({ message: '알 수 없는 오류가 발생했습니다.' });
-
-      // condition statement
-      // if (!shouldReject) {
-      //   resolve();
-      // } else {
-      //   reject({ message: '알 수 없는 오류가 발생했습니다.' });
-      // }
     }, timeout);
   });
 }

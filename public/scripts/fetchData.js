@@ -1,5 +1,5 @@
 export function fetchData({
-  url = null,
+  url = '',
   method = 'GET',
   body = null,
   onSuccess = null,
@@ -14,14 +14,14 @@ export function fetchData({
   xhr.open(method, url);
 
   xhr.addEventListener('readystatechange', () => {
-    const { status, readyState, response } = xhr;
+    const { status, readyState, response, error } = xhr;
 
     if (status >= 200 || status < 400) {
       if (readyState === 4) {
         onSuccess?.(JSON.parse(response));
       }
     } else {
-      onFail?.({ message: '네트워크 통신에 장애가 있습니다.' });
+      onFail?.(error);
     }
   });
 
@@ -62,5 +62,97 @@ fetchData.delete = (url, onSuccess, onFail) => {
     url,
     onSuccess,
     onFail,
+  });
+};
+
+/* -------------------------------------------------------------------------- */
+/* Promise API                                                                */
+/* -------------------------------------------------------------------------- */
+
+// AJAX (XMLHttpRequest: create, open, listen, send) 래핑
+// fetchPromise → Promise<any>
+// .then(onFulfilled)
+// .catch(onRejected)
+// .finally(onAlways)
+
+const defaultOptions = {
+  url: '',
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+    // ...
+  },
+  body: null, // JSON.stringify() 메서드로 문자 값을 전달
+};
+
+// LOW LEVEL API
+export const fetchPromise = (userOptions = {}) => {
+  // 객체 합성(믹스인)
+  // 구조 분해 할당
+  const { url, method, body, headers } = Object.assign(
+    {},
+    defaultOptions,
+    userOptions
+  );
+
+  // validation
+  if (!url) {
+    throw new TypeError('서버와 요청할 url 인자는 반드시 필요합니다.');
+  }
+
+  // create
+  const xhr = new XMLHttpRequest();
+
+  // open
+  xhr.open(method, url);
+
+  // send
+  xhr.send(body ? JSON.stringify(body) : null);
+
+  // return promise object
+  return new Promise((resolve, reject) => {
+    // listen
+    xhr.addEventListener('readystatechange', (e) => {
+      const { status, readyState, response, error } = xhr;
+      // xhr.status >= 200 || xhr.status < 400
+      if (status >= 200 || status < 400) {
+        // xhr.readyState === 4
+        if (readyState === 4) {
+          resolve(response);
+        }
+      } else {
+        reject(error);
+      }
+    });
+  });
+};
+
+// HIGH LEVEL API
+
+// CREATE
+fetchPromise.post = (url, body) => {
+  return fetchPromise({
+    url,
+    body,
+    method: 'POST',
+  });
+};
+// READ
+fetchPromise.get = (url) => {
+  return fetchPromise({ url });
+};
+// UPDATE
+fetchPromise.put = (url, body) => {
+  return fetchPromise({
+    url,
+    body,
+    method: 'PUT',
+  });
+};
+// DELETE
+fetchPromise.delete = (url) => {
+  return fetchPromise({
+    url,
+    method: 'DELETE',
   });
 };

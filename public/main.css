@@ -3,6 +3,14 @@ body {
   background: #f3f3fc;
 }
 
+.buttonGroup {
+  display: flex;
+  flex-flow: row wrap;
+  column-gap: 8px;
+  width: clamp(320px, 90vw, 960px);
+  margin: 12px auto;
+}
+
 .a11y-hidden {
   overflow: hidden;
   position: absolute;

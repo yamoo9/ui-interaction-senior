@@ -7,6 +7,7 @@
   <title>AJAX + API 프로그래밍</title>
   <link rel="stylesheet" href="main.css" />
   <script type="module" src="user-card-control.js"></script>
+  <script type="module" src="requestTest.js"></script>
 </head>
 <body>
 
@@ -17,6 +18,12 @@
   </div>
   
   <div class="demo-users">
+
+    <div role="group" class="buttonGroup">
+      <button type="button" data-method="POST">POST 요청</button>
+      <button type="button" data-method="PUT">PUT 요청</button>
+      <button type="button" data-method="DELETE">DELETE 요청</button>
+    </div>
 
     <section class="user-card-list">
       <h2 class="a11y-hidden">사용자 카드 리스트</h2>

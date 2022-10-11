@@ -5,7 +5,7 @@
 /* 참고 : https://mzl.la/3ECsevT                                                */
 /* -------------------------------------------------------------------------- */
 
-const HTTP_METHODS = {
+export const HTTP_METHODS = {
   get: 'GET',
   post: 'POST',
   put: 'PUT',
@@ -15,7 +15,6 @@ const HTTP_METHODS = {
 const defaultConfig = {
   method: HTTP_METHODS.get,
   body: null,
-  // [fetch api options: default value]
   // mode: 'cors',
   // cache: 'default',
   // redirect: 'follow',
@@ -26,9 +25,54 @@ const defaultConfig = {
   // },
 };
 
-export const y9 = (options) => {};
+export const y9 = async (options) => {
+  const { url, ...restConfig } = {
+    ...defaultConfig,
+    ...options,
+    headers: { ...(defaultConfig.headers ?? {}), ...(options.headers ?? {}) },
+  };
 
-y9.get = (url, options) => {};
-y9.post = (url, body, options) => {};
-y9.put = (url, body, options) => {};
-y9.delete = (url, options) => {};
+  console.log(restConfig);
+
+  return await fetch(url, restConfig);
+};
+
+y9.get = async (url, options) => {
+  const response = await y9({ url, ...options });
+  return await response[response.ok ? 'json' : 'error']();
+};
+
+y9.post = async (url, body, options) => {
+  const response = await y9({
+    url,
+    method: HTTP_METHODS.post,
+    body: JSON.stringify(body),
+    ...options,
+  });
+
+  return await response[response.ok ? 'json' : 'error']();
+};
+
+y9.put = async (url, body, options) => {
+  const response = await y9({
+    url,
+    method: HTTP_METHODS.put,
+    body: JSON.stringify(body),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+    ...options,
+  });
+
+  return await response[response.ok ? 'json' : 'error']();
+};
+
+y9.delete = async (url, options) => {
+  const response = await y9({
+    url,
+    method: HTTP_METHODS.delete,
+    ...options,
+  });
+
+  return await response[response.ok ? 'json' : 'error']();
+};

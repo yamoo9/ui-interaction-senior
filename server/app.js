@@ -1,28 +1,24 @@
-const http = require('http');
-const PORT = process.env.PORT ?? 3000;
-const albums = require('./albums.json');
+const express = require('express');
+const PORT = process.env.PORT ?? 5000;
 
-const server = http.createServer((req, res) => {
-  // 요청
-  // 경로 '/'
-  // 루팅(Routing)
+const app = express();
 
-  if (req.url === '/') {
-    // 응답
-    res
-      .writeHead(200, 'ok', { 'Content-Type': 'text/plain; charset=utf-8' })
-      .end('Hello Node.js Http Server');
-  }
-
-  if (req.url === '/api/albums') {
-    res
-      .writeHead(200, 'ok', {
-        'Content-Type': 'application/json; charset=utf-8',
-      })
-      .end(JSON.stringify(albums));
-  }
+app.get('/', (req, res, next) => {
+  res.writeHead(200, 'ok', {
+    'Content-Type': 'text/html; charset=UTF-8',
+  }).end(/* html */ `
+    <!DOCTYPE html>
+      <html lang="ko-KR">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>헬로! 익스프레스</title>
+      </head>
+      <body>
+        <h1>헬로~~ 웹 서버 애플리케이션</h1>
+      </body>
+    </html>
+  `);
 });
 
-server.listen(PORT, () =>
-  console.log(`http://localhost:${PORT} 서버 구동 중...`)
-);
+app.listen(PORT, () => console.log(`http://localhost:${PORT} 서버 구동 중...`));

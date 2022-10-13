@@ -2,9 +2,13 @@
   "scripts": {
     "client:dev": "live-server public --host=localhost --port=3000 --no-browser",
     "start": "node server/app.js",
-    "dev": ""
+    "dev": "nodemon server/app.js"
   },
   "devDependencies": {
     "live-server": "1.2.2"
+  },
+  "dependencies": {
+    "express": "4.18.2",
+    "nodemon": "2.0.20"
   }
 }

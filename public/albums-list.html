@@ -4,9 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>앨범 리스트</title>
+  <link rel="stylesheet" href="main.css" />
   <script type="module" src="albums-list.js"></script>
 </head>
 <body>
+
+  <section class="container">
+    <h1>앨범 추가</h1>
+    <form class="add-album" lang="en">
+      <div class="control">
+        <label for="new-album-artist">artist</label>
+        <input id="new-album-artist" name="artist" type="text" />
+      </div>
+      <div class="control">
+        <label for="new-album-title">title</label>
+        <input id="new-album-title" name="title" type="text" />
+      </div>
+      <button type="submit">save</button>
+    </form>
+  </section>
+
+  <section class="container">
+    <h2>FAVORITE 앨범 리스트</h2>
+    <ul class="albums-list">
+      <li>데이터 로딩 중...</li>
+    </ul>
+  </section>
   
 </body>
 </html>

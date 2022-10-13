@@ -3,7 +3,7 @@ import albums from '../api/albums.json' assert { type: 'json' };
 
 const STORAGE_KEY = '@store/albums';
 
-async function getAlbums() {
+export async function getAlbums() {
   let storage = await loadStorage(STORAGE_KEY);
 
   if (!storage) {
@@ -15,4 +15,9 @@ async function getAlbums() {
   return storage;
 }
 
-export default getAlbums;
+export async function setAlbum(newAlbum) {
+  const albums = await loadStorage(STORAGE_KEY);
+  albums.push(newAlbum);
+  await saveStorage(STORAGE_KEY, albums);
+  return newAlbum;
+}

@@ -13,7 +13,7 @@ async function rendingUserListPage() {
   renderSpinner(userCardList);
 
   try {
-    const data = await y9.get(ENDPOINT);
+    const { data } = await y9.get(ENDPOINT);
     await delay(800);
     renderUserList(data, userCardList);
   } catch (error) {

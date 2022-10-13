@@ -3,7 +3,6 @@ import { HTTP_METHODS, y9 } from './scripts/y9.js';
 const ENDPOINT = 'https://jsonplaceholder.typicode.com/users';
 const buttonGroup = document.querySelector('.buttonGroup');
 
-// 이벤트 위임
 buttonGroup.addEventListener('click', async (e) => {
   switch (e.target.dataset.method) {
     case HTTP_METHODS.post:
@@ -26,11 +25,13 @@ buttonGroup.addEventListener('click', async (e) => {
       break;
 
     case HTTP_METHODS.patch:
-      y9.put(`${ENDPOINT}/6`, {
+      const response = await y9.patch(`${ENDPOINT}/6`, {
         name: 'yamoo9',
-      })
-        .then((response) => console.log(response))
-        .catch((error) => console.error(error.message));
+      });
+      if (!response.ok) {
+        console.error(response.status);
+        console.error(response.statusText);
+      }
       break;
 
     case HTTP_METHODS.delete:

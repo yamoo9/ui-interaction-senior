@@ -31,7 +31,12 @@ export const y9 = async (options) => {
   };
 
   const response = await fetch(url, restConfig);
-  return await response[response.ok ? 'json' : 'error']();
+
+  if (response.ok) {
+    response.data = await response.json();
+  }
+
+  return response;
 };
 
 y9.get = async (url, options) => {

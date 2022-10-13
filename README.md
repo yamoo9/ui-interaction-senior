@@ -14,7 +14,7 @@ AJAX + API 프로그래밍
 - [ ] [JSON Server](https://github.com/typicode/json-server)
 - [ ] [Node.js](https://nodejs.dev/)
 - [ ] [Express.js](https://expressjs.com/)
-- [ ] [MongoDB](https://www.mongodb.com/))
+- [ ] [MongoDB](https://www.mongodb.com/) [ 다운로드 → [Community Server](https://www.mongodb.com/try/download/community), [Compass](https://www.mongodb.com/try/download/compass) ]
 
 ## 학습 목표
 
